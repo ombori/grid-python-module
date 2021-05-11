@@ -1,0 +1,17 @@
+{
+  "name": "myorg.my-module-name",
+  "version": "0.1.0",
+  "description": "My Python Module Name",
+  "container-registry": "omborigridregistry.azurecr.io",
+  "license": "UNLICENSED",
+  "type": "module",
+  "private": true,
+  "dependencies": {},
+  "devDependencies": {
+    "@ombori/ts-schema": "^2.39.3"
+  },
+  "scripts": {
+    "schema": "npx ts-schema schema.ts build/",
+    "build": "mkdir -p build && yarn schema && omg module build"
+  }
+}
