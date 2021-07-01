@@ -23,30 +23,16 @@ async def main():
     # Example of receiving a message
     def event_handler(params, type):
         print(f"{type} {params}", flush=True)
-    module.on_event('Test.Event', event_handler)
+    module.subscribe('Test.Event', event_handler)
 
     # Example of broadcasting a message
     async def send_events():
         id = 0
         while True:
             await asyncio.sleep(1)
-            module.broadcast("Test.Event", {"Some": "Data", "SomeId": id})
+            module.publish("Test.Event", {"Some": "Data", "SomeId": id})
             id += 1
     asyncio.create_task(send_events())
-
-    # Example of subscribing to an MQTT topic
-    def mqtt_handler(topic, payload):
-        print(f"Incoming message on MQTT topic={topic}: {payload}", flush=True)
-    module.subscribe("public/test_topic", mqtt_handler)
-
-    # Example of writing to an MQTT topic
-    async def send_mqtt():
-        id = 0
-        while True:
-            await asyncio.sleep(1)
-            module.publish("public/test_topic", f"message {str(id)}")
-            id += 1
-    asyncio.create_task(send_mqtt())
 
     # Wait forever after the module is started
     while True:
