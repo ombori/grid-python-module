@@ -37,6 +37,3 @@ async def main():
     # Wait forever after the module is started
     while True:
         await asyncio.sleep(1)
-
-if __name__ == "__main__":
-    asyncio.run(main())
